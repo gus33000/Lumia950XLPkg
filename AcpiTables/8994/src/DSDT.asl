@@ -30229,6 +30229,18 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "MSM8994 ", 0x00000003)
                 Return (RBUF) /* \_SB_.BAME._CRS.RBUF */
             }
         }
+		
+        Device (HALA)
+        {
+            Name (_HID, "QCOM100A")  // _HID: Hardware ID
+            Name (_UID, Zero)  // _UID: Unique ID
+        }
+
+        Device (HALB)
+        {
+            Name (_HID, "QCOM100B")  // _HID: Hardware ID
+            Name (_UID, Zero)  // _UID: Unique ID
+        }
 
         Device (UAR2)
         {
