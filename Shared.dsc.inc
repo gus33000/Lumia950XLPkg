@@ -77,7 +77,6 @@
   #
   gEfiMdeModulePkgTokenSpaceGuid.PcdEmuVariableNvModeEnable|TRUE
 
-  gEmbeddedTokenSpaceGuid.PcdPrePiCpuMemorySize|32
   gEmbeddedTokenSpaceGuid.PcdPrePiCpuIoSize|0
   gEmbeddedTokenSpaceGuid.PcdMemoryTypeEfiACPIReclaimMemory|0
   gEmbeddedTokenSpaceGuid.PcdMemoryTypeEfiACPIMemoryNVS|0
@@ -92,7 +91,6 @@
   gEmbeddedTokenSpaceGuid.PcdPrePiStackSize|0x00040000      # 256K stack
   gEmbeddedTokenSpaceGuid.PcdInterruptBaseAddress|0xf9000000
   gEmbeddedTokenSpaceGuid.PcdPrePiCpuIoSize|16
-  gEmbeddedTokenSpaceGuid.PcdPrePiCpuMemorySize|40
 
   # SoC Drivers GPIO TLMM
   gQcomTokenSpaceGuid.PcdGpioTlmmBaseAddress|0xFD510000
