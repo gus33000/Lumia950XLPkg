@@ -21,7 +21,6 @@
   MdeModulePkg/MdeModulePkg.dec
   EmbeddedPkg/EmbeddedPkg.dec
   ArmPkg/ArmPkg.dec
-  IntelFrameworkModulePkg/IntelFrameworkModulePkg.dec
   Lumia950XLPkg/Lumia950XLPkg.dec
 
 [LibraryClasses]
