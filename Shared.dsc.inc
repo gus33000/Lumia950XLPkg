@@ -222,8 +222,8 @@
   gEfiMdeModulePkgTokenSpaceGuid.PcdVideoVerticalResolution|1920
   gEfiMdeModulePkgTokenSpaceGuid.PcdSetupVideoHorizontalResolution|1080
   gEfiMdeModulePkgTokenSpaceGuid.PcdSetupVideoVerticalResolution|1920
-  gEfiMdeModulePkgTokenSpaceGuid.PcdSetupConOutRow|160
-  gEfiMdeModulePkgTokenSpaceGuid.PcdSetupConOutColumn|120
+  gEfiMdeModulePkgTokenSpaceGuid.PcdSetupConOutRow|200
+  gEfiMdeModulePkgTokenSpaceGuid.PcdSetupConOutColumn|160
 
 [LibraryClasses.common]
   ArmLib|ArmPkg/Library/ArmLib/ArmBaseLib.inf

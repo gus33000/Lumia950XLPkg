@@ -94,13 +94,16 @@ VOID EFIAPI DrawMenu(VOID)
 
   static lv_style_t style_sb;
   lv_style_copy(&style_sb, &lv_style_plain);
-  style_sb.body.main_color   = LV_COLOR_BLACK;
-  style_sb.body.grad_color   = LV_COLOR_BLACK;
-  style_sb.body.border.color = LV_COLOR_WHITE;
+  style_sb.body.main_color   = LV_COLOR_WHITE;
+  style_sb.body.grad_color   = LV_COLOR_WHITE;
+  style_sb.body.border.color = LV_COLOR_BLACK;
   style_sb.body.border.width = 1;
   style_sb.body.border.opa   = LV_OPA_70;
   style_sb.body.radius       = LV_RADIUS_CIRCLE;
   style_sb.body.opa          = LV_OPA_60;
+
+  style_sb.text.color        = LV_COLOR_BLACK;
+  style_sb.text.sel_color    = LV_COLOR_BLACK;
 
   /* Create a window */
   lv_obj_t *win = lv_win_create(lv_scr_act(), NULL);

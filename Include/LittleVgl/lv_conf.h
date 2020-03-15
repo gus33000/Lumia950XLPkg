@@ -36,7 +36,7 @@
 /* Horizontal and vertical resolution of the library.*/
 #define LV_HOR_RES          (1080)
 #define LV_VER_RES          (1920)
-#define LV_DPI              144
+#define LV_DPI              250
 
 /* Size of VDB (Virtual Display Buffer: the internal graphics buffer).
  * Required for buffered drawing, opacity and anti-aliasing
@@ -82,7 +82,7 @@
 
 /*Graphics feature usage*/
 #define USE_LV_ANIMATION        1               /*1: Enable all animations*/
-#define USE_LV_SHADOW           1               /*1: Enable shadows*/
+#define USE_LV_SHADOW           0               /*1: Enable shadows*/
 #define USE_LV_GROUP            1               /*1: Enable object groups (for keyboards)*/
 #define USE_LV_GPU              0               /*1: Enable GPU interface*/
 #define USE_LV_REAL_DRAW        1               /*1: Enable function which draw directly to the frame buffer instead of VDB (required if LV_VDB_SIZE = 0)*/
