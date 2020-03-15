@@ -103,7 +103,6 @@ VOID EFIAPI DrawMenu(VOID)
   style_sb.body.opa          = LV_OPA_60;
 
   style_sb.text.color        = LV_COLOR_BLACK;
-  style_sb.text.sel_color    = LV_COLOR_BLACK;
 
   /* Create a window */
   lv_obj_t *win = lv_win_create(lv_scr_act(), NULL);
