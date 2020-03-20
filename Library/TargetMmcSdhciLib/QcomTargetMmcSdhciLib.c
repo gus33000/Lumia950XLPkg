@@ -70,7 +70,7 @@ VOID LibQcomTargetMmcSdhciInit(INIT_SLOT_CB InitSlot)
 
   // Init SD card slot
   config.bus_width     = DATA_BUS_WIDTH_4BIT;
-  config.max_clk_rate  = 100000000;
+  config.max_clk_rate  = 50000000;
   config.slot          = 2;
   config.sdhc_base     = mmc_sdhci_base[config.slot - 1];
   config.pwrctl_base   = mmc_pwrctl_base[config.slot - 1];
