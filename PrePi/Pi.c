@@ -36,9 +36,9 @@
 VOID EFIAPI ProcessLibraryConstructorList(VOID);
 extern void SecondaryCpuEntry();
 
-static UINT32 ProcessorIdMapping[6] = {
+static UINT32 ProcessorIdMapping[8] = {
     0x00000000, 0x00000001, 0x00000002, 0x00000003,
-    0x00000100, 0x00000101,
+    0x00000100, 0x00000101, 0x00000102, 0x00000103,
 };
 
 STATIC VOID UartInit(VOID)
@@ -150,7 +150,7 @@ VOID Main(IN VOID *StackBase, IN UINTN StackSize, IN UINT64 StartTimeStamp)
 
   // Launch all CPUs
   if (ArmReadMpidr() == 0x80000000) {
-    for (UINTN i = 1; i < 6; i++) {
+    for (UINTN i = 1; i < FixedPcdGet32(CoreCount); i++) {
       ARM_HVC_ARGS ArmHvcArgs;
       ArmHvcArgs.Arg0 = ARM_SMC_ID_PSCI_CPU_ON_AARCH64;
       ArmHvcArgs.Arg1 = ProcessorIdMapping[i];
@@ -190,7 +190,7 @@ extern void ResetFb();
 
 VOID SecondaryCEntryPoint(IN UINTN Index)
 {
-  ASSERT(Index >= 1 && Index <= 5);
+  ASSERT(Index >= 1 && Index < FixedPcdGet32(CoreCount));
 
   EFI_PHYSICAL_ADDRESS MailboxAddress =
       FixedPcdGet64(SecondaryCpuMpParkRegionBase) + 0x10000 * Index + 0x1000;

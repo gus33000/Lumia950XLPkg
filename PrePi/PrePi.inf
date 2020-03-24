@@ -67,6 +67,7 @@
   gLumia950XLPkgTokenSpaceGuid.PcdPreAllocatedMemorySize
   gLumia950XLPkgTokenSpaceGuid.PcdUefiMemPoolSize
   gLumia950XLPkgTokenSpaceGuid.PcdBootShimInfo1
+  gLumia950XLPkgTokenSpaceGuid.CoreCount
   gLumia950XLPkgTokenSpaceGuid.SecondaryCpuStackSize
   gLumia950XLPkgTokenSpaceGuid.SecondaryCpuMpParkRegionBase
   gArmTokenSpaceGuid.PcdGicDistributorBase
