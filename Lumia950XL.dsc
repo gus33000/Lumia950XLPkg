@@ -41,6 +41,5 @@
   gLumia950XLPkgTokenSpaceGuid.PcdSmbiosSystemRetailModel|"RM-1085"
   gLumia950XLPkgTokenSpaceGuid.SynapticsXMax|1440
   gLumia950XLPkgTokenSpaceGuid.SynapticsYMax|2660
-  gLumia950XLPkgTokenSpaceGuid.CoreCount|8
 
 !include Lumia950XLPkg/Shared.dsc.inc

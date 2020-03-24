@@ -150,7 +150,7 @@ VOID Main(IN VOID *StackBase, IN UINTN StackSize, IN UINT64 StartTimeStamp)
 
   // Launch all CPUs
   if (ArmReadMpidr() == 0x80000000) {
-    for (UINTN i = 1; i < FixedPcdGet32(CoreCount); i++) {
+    for (UINTN i = 1; i < FixedPcdGet32(PcdCoreCount); i++) {
       ARM_HVC_ARGS ArmHvcArgs;
       ArmHvcArgs.Arg0 = ARM_SMC_ID_PSCI_CPU_ON_AARCH64;
       ArmHvcArgs.Arg1 = ProcessorIdMapping[i];
@@ -190,7 +190,7 @@ extern void ResetFb();
 
 VOID SecondaryCEntryPoint(IN UINTN Index)
 {
-  ASSERT(Index >= 1 && Index < FixedPcdGet32(CoreCount));
+  ASSERT(Index >= 1 && Index < FixedPcdGet32(PcdCoreCount));
 
   EFI_PHYSICAL_ADDRESS MailboxAddress =
       FixedPcdGet64(SecondaryCpuMpParkRegionBase) + 0x10000 * Index + 0x1000;
