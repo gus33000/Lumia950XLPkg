@@ -154,7 +154,7 @@ VOID Main(IN VOID *StackBase, IN UINTN StackSize, IN UINT64 StartTimeStamp)
     CpuDeadLoop();
   }
   else if (ArmReadCurrentEL() == AARCH64_EL2) {
-#if 0
+#if 1
     // Looks good. Notify all secondary CPUs to jump!
     for (UINTN Index = 1; Index < 7; Index++) {
       EFI_PHYSICAL_ADDRESS MailboxAddress =
