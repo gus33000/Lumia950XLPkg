@@ -361,6 +361,12 @@ VOID SecondaryCEntryPoint(IN UINTN Index)
   ArmGicEnableInterruptInterface(FixedPcdGet64(PcdGicInterruptInterfaceBase));
   MmioWrite32(FixedPcdGet64(PcdGicInterruptInterfaceBase) + 0x4, 0xf0);
 
+  ArmGicEnableInterruptInterface(0xF9004000);
+  MmioWrite32(0xF9004000 + 0x4, 0xf0);
+
+  ArmGicEnableInterruptInterface(0xF9001000);
+  MmioWrite32(0xF9001000 + 0x4, 0xf0);
+
   // But turn off interrupts
   ArmDisableInterrupts();
 
