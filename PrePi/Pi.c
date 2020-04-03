@@ -399,6 +399,22 @@ VOID SecondaryCEntryPoint(IN UINTN Index)
       // Got a valid SGI number hence signal End of Interrupt
       ArmGicEndOfInterrupt(
           FixedPcdGet64(PcdGicInterruptInterfaceBase), AcknowledgeInterrupt);
+
+    AcknowledgeInterrupt = ArmGicAcknowledgeInterrupt(
+        0xF9004000, &InterruptId);
+    if (InterruptId <
+        ArmGicGetMaxNumInterrupts(FixedPcdGet64(PcdGicDistributorBase))) {
+      // Got a valid SGI number hence signal End of Interrupt
+      ArmGicEndOfInterrupt(
+          0xF9004000, AcknowledgeInterrupt);
+
+    AcknowledgeInterrupt = ArmGicAcknowledgeInterrupt(
+        0xF9001000, &InterruptId);
+    if (InterruptId <
+        ArmGicGetMaxNumInterrupts(FixedPcdGet64(PcdGicDistributorBase))) {
+      // Got a valid SGI number hence signal End of Interrupt
+      ArmGicEndOfInterrupt(
+          FixedPcdGet64(0xF9001000, AcknowledgeInterrupt);
     }
   } while (SecondaryEntryAddr == 0);
 
