@@ -414,7 +414,7 @@ VOID SecondaryCEntryPoint(IN UINTN Index)
         ArmGicGetMaxNumInterrupts(FixedPcdGet64(PcdGicDistributorBase))) {
       // Got a valid SGI number hence signal End of Interrupt
       ArmGicEndOfInterrupt(
-          FixedPcdGet64(0xF9001000, AcknowledgeInterrupt);
+          0xF9001000, AcknowledgeInterrupt);
     }
   } while (SecondaryEntryAddr == 0);
 
