@@ -208,8 +208,7 @@ protocol.
 **/
 EFI_STATUS
 LocateFvInstanceWithTables(
-    IN EFI_GUID Guid, 
-    OUT EFI_FIRMWARE_VOLUME2_PROTOCOL **Instance)
+    IN EFI_GUID Guid, OUT EFI_FIRMWARE_VOLUME2_PROTOCOL **Instance)
 {
   EFI_STATUS                     Status;
   EFI_HANDLE *                   HandleBuffer;
@@ -223,6 +222,7 @@ LocateFvInstanceWithTables(
 
   FvStatus = 0;
 
+  DEBUG((EFI_D_ERROR, "Locating gEfiFirmwareVolume2ProtocolGuid protocol\n"));
   //
   // Locate protocol.
   //
@@ -241,6 +241,7 @@ LocateFvInstanceWithTables(
   //
 
   for (Index = 0; Index < NumberOfHandles; Index++) {
+    DEBUG((EFI_D_ERROR, "Handle gEfiFirmwareVolume2ProtocolGuid protocol\n"));
     //
     // Get the protocol on this handle
     // This should not fail because of LocateHandleBuffer
@@ -250,6 +251,7 @@ LocateFvInstanceWithTables(
         (VOID **)&FvInstance);
     ASSERT_EFI_ERROR(Status);
 
+    DEBUG((EFI_D_ERROR, "Read file\n"));
     //
     // See if it has the ACPI storage file
     //
@@ -318,20 +320,24 @@ LoadAcpiTablesFromGuid(IN EFI_GUID Guid)
   CurrentTable = NULL;
   TableHandle  = 0;
 
+  DEBUG((EFI_D_ERROR, "Locating AcpiTable protocol\n"));
   //
   // Find the AcpiTable protocol
   //
   Status = gBS->LocateProtocol(
       &gEfiAcpiTableProtocolGuid, NULL, (VOID **)&AcpiTable);
   if (EFI_ERROR(Status)) {
+  DEBUG((EFI_D_ERROR, "Locating AcpiTable protocol failed\n"));
     return EFI_ABORTED;
   }
 
+  DEBUG((EFI_D_ERROR, "Locating firmware volume protocol\n"));
   //
   // Locate the firmware volume protocol
   //
   Status = LocateFvInstanceWithTables(Guid, &FwVol);
   if (EFI_ERROR(Status)) {
+  DEBUG((EFI_D_ERROR, "Locate the firmware volume protocol failed\n"));
     return EFI_ABORTED;
   }
   //
@@ -339,6 +345,7 @@ LoadAcpiTablesFromGuid(IN EFI_GUID Guid)
   //
   while (Status == EFI_SUCCESS) {
 
+  DEBUG((EFI_D_ERROR, "Read section\n"));
     Status = FwVol->ReadSection(
         FwVol, &Guid, EFI_SECTION_RAW, Instance, (VOID **)&CurrentTable, &Size,
         &FvStatus);
@@ -356,6 +363,7 @@ LoadAcpiTablesFromGuid(IN EFI_GUID Guid)
       //
       AcpiPlatformChecksum((UINT8 *)CurrentTable, TableSize);
 
+  DEBUG((EFI_D_ERROR, "Install table\n"));
       //
       // Install ACPI table
       //
@@ -368,6 +376,7 @@ LoadAcpiTablesFromGuid(IN EFI_GUID Guid)
       gBS->FreePool(CurrentTable);
 
       if (EFI_ERROR(Status)) {
+  DEBUG((EFI_D_ERROR, "Install table failed\n"));
         return EFI_ABORTED;
       }
 
@@ -425,14 +434,14 @@ PreLoaderDxeInitialize(
       ASSERT_EFI_ERROR(Status);
     }
     else {
-      Status = LoadAcpiTablesFromGuid(gAcpiTablesPsci);
+      Status = LoadAcpiTablesFromGuid(gAcpiTablesMpPark);
       ASSERT_EFI_ERROR(Status);
     }
     break;
   }
   case BOOT_MODE_PSCI:
   default: {
-    Status = LoadAcpiTablesFromGuid(gAcpiTablesMpPark);
+    Status = LoadAcpiTablesFromGuid(gAcpiTablesPsci);
     ASSERT_EFI_ERROR(Status);
     break;
   }
