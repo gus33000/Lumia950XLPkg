@@ -422,14 +422,14 @@ PreLoaderDxeInitialize(
       ASSERT_EFI_ERROR(Status);
     }
     else {
-      Status = LoadAcpiTablesFromGuid(gAcpiTablesPsci);
+      Status = LoadAcpiTablesFromGuid(gAcpiTablesMpPark);
       ASSERT_EFI_ERROR(Status);
     }
     break;
   }
   case BOOT_MODE_PSCI:
   default: {
-    Status = LoadAcpiTablesFromGuid(gAcpiTablesMpPark);
+    Status = LoadAcpiTablesFromGuid(gAcpiTablesPsci);
     ASSERT_EFI_ERROR(Status);
     break;
   }
