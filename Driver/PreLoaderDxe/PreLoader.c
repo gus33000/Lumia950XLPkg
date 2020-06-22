@@ -379,9 +379,6 @@ LoadAcpiTablesFromGuid(IN EFI_GUID Guid)
     }
   }
 
-  //
-  // The driver does not require to be kept loaded.
-  //
   return Status;
 }
 
