@@ -104,9 +104,30 @@ VOID Main(IN VOID *StackBase, IN UINTN StackSize, IN UINT64 StartTimeStamp)
   UINTN UefiMemorySize = 0;
 
   UINTN BootMode = BOOT_MODE_PSCI;
+  UINTN EnablePlatformSdCardBoot = 0;
+  UINTN UseQuadCoreConfiguration = 0;
 
   // Initialize (fake) UART.
   UartInit();
+
+  // Initialize Platform PreLoader HOBs
+  if (PreEnv->Header == PRELOADER_HEADER) {
+    Crc32         = PreEnv->Crc32;
+    PreEnv->Crc32 = 0x0;
+    if (CalculateCrc32(PreEnv, sizeof(PRELOADER_ENVIRONMENT)) == Crc32) {
+      PreEnv->Crc32 = Crc32;
+      DEBUG((EFI_D_INFO, "CRC32 check succeeded \n"));
+    }
+    else {
+      // Hey we have memory corrpution
+      DEBUG((EFI_D_ERROR, "CRC32 check failed \n"));
+      ASSERT(FALSE);
+    }
+    
+    BootMode = PreEnv->BootMode;
+    EnablePlatformSdCardBoot = PreEnv->EnablePlatformSdCardBoot;
+    UseQuadCoreConfiguration = PreEnv->UseQuadCoreConfiguration;
+  }
 
   if (BootMode != BOOT_MODE_PSCI) {
     // Which EL?
@@ -281,21 +302,6 @@ VOID Main(IN VOID *StackBase, IN UINTN StackSize, IN UINT64 StartTimeStamp)
   // Initialize Platform HOBs (CpuHob and FvHob)
   Status = PlatformPeim();
   ASSERT_EFI_ERROR(Status);
-
-  // Initialize Platform PreLoader HOBs
-  if (PreEnv->Header == PRELOADER_HEADER) {
-    Crc32         = PreEnv->Crc32;
-    PreEnv->Crc32 = 0x0;
-    if (CalculateCrc32(PreEnv, sizeof(PRELOADER_ENVIRONMENT)) == Crc32) {
-      PreEnv->Crc32 = Crc32;
-      DEBUG((EFI_D_INFO, "CRC32 check succeeded \n"));
-    }
-    else {
-      // Hey we have memory corrpution
-      DEBUG((EFI_D_ERROR, "CRC32 check failed \n"));
-      ASSERT(FALSE);
-    }
-  }
 
   // Now, the HOB List has been initialized, we can register performance
   // information PERF_START (NULL, "PEI", NULL, StartTimeStamp);
