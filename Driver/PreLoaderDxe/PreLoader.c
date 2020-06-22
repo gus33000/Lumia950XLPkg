@@ -382,7 +382,7 @@ LoadAcpiTablesFromGuid(IN EFI_GUID Guid)
   //
   // The driver does not require to be kept loaded.
   //
-  return EFI_REQUEST_UNLOAD_IMAGE;
+  return Status;
 }
 
 EFI_STATUS
