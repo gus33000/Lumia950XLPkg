@@ -379,7 +379,7 @@ LoadAcpiTablesFromGuid(IN EFI_GUID Guid)
     }
   }
 
-  return Status;
+  return EFI_SUCCESS;
 }
 
 EFI_STATUS
