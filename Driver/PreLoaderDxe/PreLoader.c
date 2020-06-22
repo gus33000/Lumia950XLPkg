@@ -42,9 +42,9 @@ STATIC EFI_GUID gUnsupportedImageGuid = {
 };
 
 STATIC EFI_GUID gAcpiTablesPsci = {
-    0x254e377e,
-    0x018e,
-    0xee4f,
+    0x7e374e25,
+    0x8e01,
+    0x4fee,
     {
         0x87,
         0xf2,
@@ -58,9 +58,9 @@ STATIC EFI_GUID gAcpiTablesPsci = {
 };
 
 STATIC EFI_GUID gAcpiTablesMpPark = {
-    0x254e377e,
-    0x018e,
-    0xee4f,
+    0x7e374e25,
+    0x8e01,
+    0x4fee,
     {
         0x87,
         0xf2,
@@ -74,9 +74,9 @@ STATIC EFI_GUID gAcpiTablesMpPark = {
 };
 
 STATIC EFI_GUID gAcpiTablesMpParkQuadCore = {
-    0x254e377e,
-    0x018e,
-    0xee4f,
+    0x7e374e25,
+    0x8e01,
+    0x4fee,
     {
         0x87,
         0xf2,
@@ -90,9 +90,9 @@ STATIC EFI_GUID gAcpiTablesMpParkQuadCore = {
 };
 
 STATIC EFI_GUID gAcpiTablesEmmcBoot = {
-    0x254e377e,
-    0x018e,
-    0xee4f,
+    0x7e374e25,
+    0x8e01,
+    0x4fee,
     {
         0x87,
         0xf2,
@@ -106,9 +106,9 @@ STATIC EFI_GUID gAcpiTablesEmmcBoot = {
 };
 
 STATIC EFI_GUID gAcpiTablesSdBoot = {
-    0x254e377e,
-    0x018e,
-    0xee4f,
+    0x7e374e25,
+    0x8e01,
+    0x4fee,
     {
         0x87,
         0xf2,
