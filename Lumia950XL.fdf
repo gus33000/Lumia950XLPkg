@@ -137,16 +137,41 @@ READ_LOCK_STATUS   = TRUE
   # ACPI Tables
   FILE FREEFORM = 7E374E25-8E01-4FEE-87F2-390C23C606CD {
 	SECTION RAW = Lumia950XLPkg/AcpiTables/8994/builtin/DBG2.aml
-	SECTION RAW = Lumia950XLPkg/AcpiTables/8994/builtin/DSDT.aml
 	SECTION RAW = Lumia950XLPkg/AcpiTables/8994/builtin/FACS.aml
-	SECTION RAW = Lumia950XLPkg/AcpiTables/8994/builtin/FADT.NoPsci.acpi
 	SECTION RAW = Lumia950XLPkg/AcpiTables/8994/builtin/GTDT.aml
-	SECTION RAW = Lumia950XLPkg/AcpiTables/8994/builtin/MADT.MpPark.aml
 	SECTION RAW = Lumia950XLPkg/AcpiTables/8994/builtin/MCFG.aml
 	SECTION RAW = Lumia950XLPkg/AcpiTables/8994/builtin/CSRT.aml
-  SECTION RAW = Lumia950XLPkg/AcpiTables/8994/builtin/PPTT.aml
-  SECTION RAW = Lumia950XLPkg/AcpiTables/8994/generated/SSDT.aml
+	SECTION RAW = Lumia950XLPkg/AcpiTables/8994/builtin/PPTT.aml
+	SECTION RAW = Lumia950XLPkg/AcpiTables/8994/generated/SSDT.aml
 	SECTION UI = "AcpiTables"
+  }
+  
+  FILE FREEFORM = 7E374E25-8E01-4FEE-87F2-390C23C606B1 {
+	SECTION RAW = Lumia950XLPkg/AcpiTables/8994/builtin/FADT.acpi
+	SECTION RAW = Lumia950XLPkg/AcpiTables/8994/builtin/MADT.aml
+	SECTION UI = "AcpiTablesPsci"
+  }
+
+  FILE FREEFORM = 7E374E25-8E01-4FEE-87F2-390C23C606B2 {
+	SECTION RAW = Lumia950XLPkg/AcpiTables/8994/builtin/FADT.NoPsci.acpi
+	SECTION RAW = Lumia950XLPkg/AcpiTables/8994/builtin/MADT.MpPark.aml
+	SECTION UI = "AcpiTablesMpPark"
+  }
+
+  FILE FREEFORM = 7E374E25-8E01-4FEE-87F2-390C23C606B3 {
+	SECTION RAW = Lumia950XLPkg/AcpiTables/8994/builtin/FADT.NoPsci.acpi
+	SECTION RAW = Lumia950XLPkg/AcpiTables/8994/builtin/MADT.MpParkQuadCore.aml
+	SECTION UI = "AcpiTablesMpParkQuadCore"
+  }
+
+  FILE FREEFORM = 7E374E25-8E01-4FEE-87F2-390C23C606B4 {
+	SECTION RAW = Lumia950XLPkg/AcpiTables/8994/builtin/DSDT.aml
+	SECTION UI = "AcpiTablesEmmcBoot"
+  }
+
+  FILE FREEFORM = 7E374E25-8E01-4FEE-87F2-390C23C606B5 {
+	SECTION RAW = Lumia950XLPkg/AcpiTables/8994/builtin/DSDT.sdboot.aml
+	SECTION UI = "AcpiTablesSdBoot"
   }
 
   # Shell
