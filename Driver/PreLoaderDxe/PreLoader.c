@@ -208,7 +208,8 @@ protocol.
 **/
 EFI_STATUS
 LocateFvInstanceWithTables(
-    IN EFI_GUID Guid OUT EFI_FIRMWARE_VOLUME2_PROTOCOL **Instance)
+    IN EFI_GUID Guid, 
+    OUT EFI_FIRMWARE_VOLUME2_PROTOCOL **Instance)
 {
   EFI_STATUS                     Status;
   EFI_HANDLE *                   HandleBuffer;
