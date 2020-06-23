@@ -164,48 +164,48 @@ VOID Main(IN VOID *StackBase, IN UINTN StackSize, IN UINT64 StartTimeStamp)
           ASSERT(ArmHvcArgs.Arg0 == ARM_SMC_PSCI_RET_SUCCESS);
         }
       }
-    }
 
-    if (BootMode == BOOT_MODE_MPPARK_EL2) {
-      DEBUG((EFI_D_ERROR, "Waiting for all CPUs...\n"));
-      WaitForSecondaryCPUs();
-      DEBUG((EFI_D_ERROR, "All CPU started.\n"));
+      if (BootMode == BOOT_MODE_MPPARK_EL2) {
+        DEBUG((EFI_D_ERROR, "Waiting for all CPUs...\n"));
+        WaitForSecondaryCPUs();
+        DEBUG((EFI_D_ERROR, "All CPU started.\n"));
 
-      // Install patch
-      InstallEl2Patch();
+        // Install patch
+        InstallEl2Patch();
 
-      // Looks good. Notify all secondary CPUs to jump!
-      for (UINTN Index = 1; Index < FixedPcdGet32(PcdCoreCount); Index++) {
-        EFI_PHYSICAL_ADDRESS MailboxAddress =
-            FixedPcdGet64(SecondaryCpuMpParkRegionBase) + 0x10000 * Index +
-            0x1000;
-        PEFI_PROCESSOR_MAILBOX pMailbox =
-            (PEFI_PROCESSOR_MAILBOX)(VOID *)MailboxAddress;
+        // Looks good. Notify all secondary CPUs to jump!
+        for (UINTN Index = 1; Index < FixedPcdGet32(PcdCoreCount); Index++) {
+          EFI_PHYSICAL_ADDRESS MailboxAddress =
+              FixedPcdGet64(SecondaryCpuMpParkRegionBase) + 0x10000 * Index +
+              0x1000;
+          PEFI_PROCESSOR_MAILBOX pMailbox =
+              (PEFI_PROCESSOR_MAILBOX)(VOID *)MailboxAddress;
 
-        pMailbox->El2JumpFlag = EL2REDIR_MAILBOX_SIGNAL;
+          pMailbox->El2JumpFlag = EL2REDIR_MAILBOX_SIGNAL;
+          ArmDataSynchronizationBarrier();
+        }
+
+        // Make sure they are all initialized
+        DEBUG((EFI_D_ERROR, "Waiting for all CPUs...\n"));
+        WaitForSecondaryCPUs();
+        DEBUG((EFI_D_ERROR, "All CPU started.\n"));
         ArmDataSynchronizationBarrier();
+
+        DEBUG((EFI_D_ERROR, "Jump CPU0 to EL2.\n"));
+        ArmDataSynchronizationBarrier();
+
+        // Install patch again
+        InstallEl2Patch();
+
+        // Jump overself
+        ARM_HVC_ARGS StubArg;
+        // PSCI_CPU_SUSPEND_AA64
+        StubArg.Arg0 = 0xc4000001;
+        ArmCallHvc(&StubArg);
+
+        // We should not reach here
+        ASSERT(FALSE);
       }
-
-      // Make sure they are all initialized
-      DEBUG((EFI_D_ERROR, "Waiting for all CPUs...\n"));
-      WaitForSecondaryCPUs();
-      DEBUG((EFI_D_ERROR, "All CPU started.\n"));
-      ArmDataSynchronizationBarrier();
-
-      DEBUG((EFI_D_ERROR, "Jump CPU0 to EL2.\n"));
-      ArmDataSynchronizationBarrier();
-
-      // Install patch again
-      InstallEl2Patch();
-
-      // Jump overself
-      ARM_HVC_ARGS StubArg;
-      // PSCI_CPU_SUSPEND_AA64
-      StubArg.Arg0 = 0xc4000001;
-      ArmCallHvc(&StubArg);
-
-      // We should not reach here
-      ASSERT(FALSE);
 
       // Architecture-specific initialization
       // Enable cache
