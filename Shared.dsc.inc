@@ -228,10 +228,10 @@
   gLumia950XLPkgTokenSpaceGuid.SecondaryCpuIgnoreCpuIdCheck|TRUE
 
 [PcdsDynamicDefault.common]
-  gEfiMdeModulePkgTokenSpaceGuid.PcdVideoHorizontalResolution|1080
-  gEfiMdeModulePkgTokenSpaceGuid.PcdVideoVerticalResolution|1920
-  gEfiMdeModulePkgTokenSpaceGuid.PcdSetupVideoHorizontalResolution|1080
-  gEfiMdeModulePkgTokenSpaceGuid.PcdSetupVideoVerticalResolution|1920
+  gEfiMdeModulePkgTokenSpaceGuid.PcdVideoHorizontalResolution|1440
+  gEfiMdeModulePkgTokenSpaceGuid.PcdVideoVerticalResolution|2560
+  gEfiMdeModulePkgTokenSpaceGuid.PcdSetupVideoHorizontalResolution|1440
+  gEfiMdeModulePkgTokenSpaceGuid.PcdSetupVideoVerticalResolution|2560
   gEfiMdeModulePkgTokenSpaceGuid.PcdSetupConOutRow|160
   gEfiMdeModulePkgTokenSpaceGuid.PcdSetupConOutColumn|120
 
