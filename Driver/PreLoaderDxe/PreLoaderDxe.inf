@@ -8,6 +8,7 @@
   ENTRY_POINT                    = PreLoaderDxeInitialize
 
 [Sources.common]
+  AcpiTableInstaller.c
   PreLoader.c
 
 [Packages]
