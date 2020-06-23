@@ -143,24 +143,26 @@ VOID Main(IN VOID *StackBase, IN UINTN StackSize, IN UINT64 StartTimeStamp)
     DEBUG((EFI_D_LOAD | EFI_D_INFO, "Launching CPUs\n"));
 
     // Launch all CPUs
-    if (ArmReadMpidr() == 0x80000000) {
-      for (UINTN i = 1; i < FixedPcdGet32(PcdCoreCount); i++) {
-        ARM_HVC_ARGS ArmHvcArgs;
-        ArmHvcArgs.Arg0 = ARM_SMC_ID_PSCI_CPU_ON_AARCH64;
-        ArmHvcArgs.Arg1 = ProcessorIdMapping[i];
+    if (ArmReadCurrentEL() == AARCH64_EL1) {
+      if (ArmReadMpidr() == 0x80000000) {
+        for (UINTN i = 1; i < FixedPcdGet32(PcdCoreCount); i++) {
+          ARM_HVC_ARGS ArmHvcArgs;
+          ArmHvcArgs.Arg0 = ARM_SMC_ID_PSCI_CPU_ON_AARCH64;
+          ArmHvcArgs.Arg1 = ProcessorIdMapping[i];
 
-        if (BootMode == BOOT_MODE_MPPARK_EL2) {
-          // Hold and jump to EL2 (only for EL1)
-          ArmHvcArgs.Arg2 = (UINTN)&_ModuleEntryPoint;
+          if (BootMode == BOOT_MODE_MPPARK_EL2) {
+            // Hold and jump to EL2 (only for EL1)
+            ArmHvcArgs.Arg2 = (UINTN)&_ModuleEntryPoint;
+          }
+          else {
+            ArmHvcArgs.Arg2 = (UINTN)&SecondaryCpuEL1Entry;
+          }
+
+          ArmHvcArgs.Arg3 = i;
+
+          ArmCallHvc(&ArmHvcArgs);
+          ASSERT(ArmHvcArgs.Arg0 == ARM_SMC_PSCI_RET_SUCCESS);
         }
-        else {
-          ArmHvcArgs.Arg2 = (UINTN)&SecondaryCpuEL1Entry;
-        }
-
-        ArmHvcArgs.Arg3 = i;
-
-        ArmCallHvc(&ArmHvcArgs);
-        ASSERT(ArmHvcArgs.Arg0 == ARM_SMC_PSCI_RET_SUCCESS);
       }
     }
 
