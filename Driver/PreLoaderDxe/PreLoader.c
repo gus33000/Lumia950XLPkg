@@ -25,6 +25,8 @@
 #include <LittleVgl/core/lvgl.h>
 #include <LittleVgl/lv_conf.h>
 
+#include "AcpiTableInstaller.h"
+
 STATIC EFI_GUID gUnsupportedImageGuid = {
     0x5fdf5e3c,
     0x6b70,
