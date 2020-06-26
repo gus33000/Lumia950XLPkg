@@ -19,8 +19,8 @@ DefinitionBlock ("", "SSDT", 2, "MMO   ", "MSM8994 ", 0x00000003)
             {
                 \_SB.PEP0
             })
-            Name (_HID, "QCOM2466")  // _HID: Hardware ID
-            Name (_CID, "ACPIQCOM2466")  // _CID: Compatible ID
+            Name (_HID, "QCOM24BF")  // _HID: Hardware ID
+            Name (_CID, "ACPIQCOM24BF")  // _CID: Compatible ID
             Name (_UID, One)  // _UID: Unique ID
             Name (_CCA, Zero)  // _CCA: Cache Coherency Attribute
             Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
