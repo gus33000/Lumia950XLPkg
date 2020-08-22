@@ -906,9 +906,6 @@ DefinitionBlock ("", "SSDT", 2, "MMO   ", "MSM8994 ", 0x00000012)
             Name (_UID, Zero)  // _UID: Unique ID
             Name (_DEP, Package (0x03)  // _DEP: Dependencies
             {
-                \_SB.MMU0, 
-                \_SB.MMU3, 
-                \_SB.MMU4, 
                 \_SB.PEP0, 
                 \_SB.SP10, 
                 \_SB.GIO0
