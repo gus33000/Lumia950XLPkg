@@ -938,12 +938,22 @@ DefinitionBlock ("", "SSDT", 2, "MMO   ", "MSM8992 ", 0x00000011)
         {
             Name (_HID, "MSHW1007")  // _HID: Hardware ID
             Name (_UID, Zero)  // _UID: Unique ID
-            Name (_DEP, Package (0x04)  // _DEP: Dependencies
+            Name (_DEP, Package (0x0E)  // _DEP: Dependencies
             {
+                \_SB.MMU0, 
+                \_SB.MMU3, 
+                \_SB.MMU4, 
                 \_SB.PEP0, 
                 \_SB.IC11, 
                 \_SB.GIO0, 
-                \_SB.PM02
+                \_SB.PM02,
+                \_SB.OMEM, 
+                \_SB.PMIC, 
+                \_SB.PILC, 
+                \_SB.RPEN, 
+                \_SB.TREE, 
+                \_SB.SCM0, 
+                \_SB.DISP
             })
             Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
             {

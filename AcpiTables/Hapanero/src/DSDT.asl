@@ -34187,10 +34187,19 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "MSM8994 ", 0x00000003)
             Name (_HID, "MSHW1004")  // _HID: Hardware ID
             Name (_CID, "ACPIMSHW1004")  // _CID: Compatible ID
             Name (_UID, Zero)  // _UID: Unique ID
-            Name (_DEP, Package (0x02)  // _DEP: Dependencies
+            Name (_DEP, Package (0x0B)  // _DEP: Dependencies
             {
+                \_SB.MMU0, 
+                \_SB.MMU3, 
+                \_SB.MMU4, 
                 \_SB.PEP0, 
-                \_SB.GIO0
+                \_SB.GIO0, 
+                \_SB.OMEM, 
+                \_SB.PMIC, 
+                \_SB.PILC, 
+                \_SB.RPEN, 
+                \_SB.TREE, 
+                \_SB.SCM0
             })
             Method (PINS, 0, NotSerialized)
             {
