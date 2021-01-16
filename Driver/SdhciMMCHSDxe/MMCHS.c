@@ -312,6 +312,7 @@ MMCHSWriteBlocks(
   // devices
   // Only slot 1 (eMMC) is protected
   if (Instance->MmcDev->config.slot <= 1 && (0 <= Lba && Lba <= 253951)) {
+    DEBUG((EFI_D_ERROR, "Denied Writing block @ %x\n", (UINTN)Lba));
     return EFI_UNSUPPORTED;
   }
 
