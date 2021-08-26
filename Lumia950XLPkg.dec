@@ -1,3 +1,12 @@
+## @file
+#
+#  Copyright (c) 2016, Linaro, Ltd. All rights reserved.
+#  Copyright (c) 2017-2018, Andrei Warkentin <andrey.warkentin@gmail.com>
+#  Copyright (c) 2018, Bingxing Wang. All rights reserved.
+#
+#  SPDX-License-Identifier: BSD-2-Clause-Patent
+#
+##
 [Defines]
   DEC_SPECIFICATION              = 0x00010005
   PACKAGE_NAME                   = Lumia950XLPkg
@@ -68,6 +77,13 @@
   gLumia950XLPkgTokenSpaceGuid.SecondaryCpuMpParkRegionBase|0x00300000|UINT64|0x0000f002
   gLumia950XLPkgTokenSpaceGuid.SecondaryCpuIgnoreCpuIdCheck|FALSE|BOOLEAN|0x0000f003
   gLumia950XLPkgTokenSpaceGuid.PsciCpuSuspendAddress|0x06c03aa8|UINT64|0x0000f004
+  
+  # NV
+  gLumia950XLPkgTokenSpaceGuid.PcdNvStorageEventLogBase|0x0|UINT32|0x00000003
+  gLumia950XLPkgTokenSpaceGuid.PcdNvStorageEventLogSize|0x0|UINT32|0x00000004
+  gLumia950XLPkgTokenSpaceGuid.PcdNvStorageVariableBase|0x0|UINT32|0x00000005
+  gLumia950XLPkgTokenSpaceGuid.PcdNvStorageFtwSpareBase|0x0|UINT32|0x00000006
+  gLumia950XLPkgTokenSpaceGuid.PcdNvStorageFtwWorkingBase|0x0|UINT32|0x00000007
 
   # QTimer
   gQcomTokenSpaceGuid.PcdQTimerBase|0xF9021000|UINT64|0x00000050
@@ -194,6 +210,9 @@
   # Boot Applications
   # 93be6759-7d1a-4d69-986d-d78e54c9f930
   gLumia950XLPkgTokenSpaceGuid.PcdBootSplashAppFile|{ 0x59, 0x67, 0xbe, 0x93, 0x1a, 0x7d, 0x69, 0x4d, 0x6d, 0x98, 0x30, 0xf9, 0xc9, 0x54, 0x8e, 0xd7 }|VOID*|0x00000401
+  
+[PcdsFixedAtBuild, PcdsPatchableInModule, PcdsDynamic, PcdsDynamicEx]
+  gLumia950XLPkgTokenSpaceGuid.PcdPlatformResetDelay|0|UINT32|0x0000001E
 
 [PcdsFeatureFlag.common]
   # MMCHSDxe

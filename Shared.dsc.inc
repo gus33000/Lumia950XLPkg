@@ -231,6 +231,18 @@
   gLumia950XLPkgTokenSpaceGuid.SecondaryCpuMpParkRegionBase|0x00300000
   gLumia950XLPkgTokenSpaceGuid.SecondaryCpuIgnoreCpuIdCheck|TRUE
 
+[PcdsDynamicHii.common.DEFAULT]
+
+  #
+  # Reset-related.
+  #
+  gLumia950XLPkgTokenSpaceGuid.PcdPlatformResetDelay|L"ResetDelay"|gLumia950XLPkgTokenSpaceGuid|0x0|0
+  
+  #
+  # Common UEFI ones.
+  #
+  gEfiMdePkgTokenSpaceGuid.PcdPlatformBootTimeOut|L"Timeout"|gEfiGlobalVariableGuid|0x0|5
+
 [PcdsDynamicDefault.common]
   gEfiMdeModulePkgTokenSpaceGuid.PcdVideoHorizontalResolution|1080
   gEfiMdeModulePkgTokenSpaceGuid.PcdVideoVerticalResolution|1920
