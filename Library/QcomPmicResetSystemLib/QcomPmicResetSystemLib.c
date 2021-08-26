@@ -23,7 +23,6 @@ be found at http://opensource.org/licenses/bsd-license.php
 #include <Library/DebugLib.h>
 #include <Library/TimerLib.h>
 #include <Library/EfiResetSystemLib.h>
-#include <Library/UefiRuntimeLib.h>
 #include <Library/UefiBootServicesTableLib.h>
 #include <Library/UefiRuntimeServicesTableLib.h>
 
@@ -153,22 +152,6 @@ LibResetSystem(
     IN EFI_RESET_TYPE ResetType, IN EFI_STATUS ResetStatus, IN UINTN DataSize,
     IN CHAR16 *ResetData OPTIONAL)
 {
-  UINT32 Delay;
-  if (!EfiAtRuntime()) {
-    /*
-     * Only if still in UEFI.
-     */
-    EfiEventGroupSignal(&gRaspberryPiEventResetGuid);
-
-    Delay = PcdGet32(PcdPlatformResetDelay);
-    if (Delay != 0) {
-      DEBUG(
-          (DEBUG_INFO, "Platform will be reset in %d.%d seconds...\n",
-           Delay / 1000000, (Delay % 1000000) / 100000));
-      MicroSecondDelay(Delay);
-    }
-  }
-
   switch (ResetType) {
   case EfiResetPlatformSpecific:
     // Map the platform specific reset as reboot

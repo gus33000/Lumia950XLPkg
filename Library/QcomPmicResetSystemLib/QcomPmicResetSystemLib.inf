@@ -45,13 +45,8 @@
   DebugLib
   UefiBootServicesTableLib
   UefiRuntimeServicesTableLib
-  PcdLib
   TimerLib
   DloadUtilLib
   Pm8x41Lib
   RuntimeSpmiLib
   CompilerIntrinsicsLib
-  UefiRuntimeLib
-  
-[Pcd]
-  gLumia950XLPkgTokenSpaceGuid.PcdPlatformResetDelay      ## CONSUMES
