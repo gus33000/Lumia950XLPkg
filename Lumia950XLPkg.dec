@@ -4,13 +4,6 @@
   PACKAGE_GUID                   = 5fd522a5-b671-429f-957f-75113dd02435
   PACKAGE_VERSION                = 0.1
 
-  #
-  # Defines for default states.  These can be changed on the command line.
-  # -D FLAG=VALUE
-  #
-  DEFINE SECURE_BOOT_ENABLE           = TRUE
-  DEFINE USE_SCREEN_FOR_SERIAL_OUTPUT = FALSE
-
 [Includes.common]
   Include                        # Root include for the package
 

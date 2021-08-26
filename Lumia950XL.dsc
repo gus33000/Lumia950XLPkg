@@ -29,6 +29,15 @@
   BUILD_TARGETS                  = DEBUG|RELEASE
   SKUID_IDENTIFIER               = DEFAULT
   FLASH_DEFINITION               = Lumia950XLPkg/Lumia950XL.fdf
+  
+  #
+  # Defines for default states.  These can be changed on the command line.
+  # -D FLAG=VALUE
+  #
+  DEFINE SECURE_BOOT_ENABLE           = TRUE
+  DEFINE USE_SCREEN_FOR_SERIAL_OUTPUT = FALSE
+  DEFINE SEND_HEARTBEAT_TO_SERIAL     = FALSE
+  DEFINE UC120_BITSTREAM_UPLOADER     = FALSE
 
 [BuildOptions.common]
   GCC:*_*_AARCH64_CC_FLAGS = -DSILICON_PLATFORM=8994
