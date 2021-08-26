@@ -22,7 +22,6 @@
   UefiBootServicesTableLib
   UefiRuntimeServicesTableLib
   PrintLib
-  UefiRuntimeLib
   EfiResetSystemLib
   DxeServicesLib
   BmpSupportLib
