@@ -40,7 +40,6 @@
   BaseLib
   IoLib
   ArmLib
-  ArmMmuLib
   DebugLib
   UefiBootServicesTableLib
   UefiRuntimeServicesTableLib
