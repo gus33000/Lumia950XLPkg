@@ -22,14 +22,9 @@
   #
   DfciRecoveryLib|DfciPkg/Library/DfciRecoveryLib/DfciRecoveryLib.inf
   #
-  # Contains openSSL library used by BaseCryptoLib
-  #
-  OpensslLib|CryptoPkg/Library/OpensslLib/OpensslLib.inf
-  #
   # Functions that should contain base logic for querying, setting, and verifying user passwords.
   #
-  PasswordStoreLib|OemPkg/Library/PasswordStoreLib/PasswordStoreLib.inf
-  BaseCryptLib|CryptoPkg/Library/BaseCryptLib/BaseCryptLib.inf
+  PasswordStoreLib|OemPkg/Library/PasswordStoreLibNull/PasswordStoreLibNull.inf
   #
   # Supports DFCI Groups.
   #
