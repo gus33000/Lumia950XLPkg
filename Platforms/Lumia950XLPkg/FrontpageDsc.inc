@@ -227,19 +227,17 @@
         #Platform should add all it settings libs here
   <LibraryClasses>
         NULL|ZeroTouchPkg/Library/ZeroTouchSettings/ZeroTouchSettings.inf
-        NULL|DfciPkg/Library/DfciPasswordProvider/DfciPasswordProvider.inf
         NULL|DfciPkg/Library/DfciSettingsLib/DfciSettingsLib.inf
-        NULL|DfciPkg/Library/DfciVirtualizationSettings/DfciVirtualizationSettings.inf
-        NULL|DfciPkg/Library/DfciWpbtSettingLib/DfciWpbtSetting.inf
-        NULL|DfciPkg/Library/DfciAssetTagSettingLib/DfciAssetTagSetting.inf
         DfciSettingPermissionLib|DfciPkg/Library/DfciSettingPermissionLib/DfciSettingPermissionLib.inf
         NULL|PcBdsPkg/Library/MsBootManagerSettingsDxeLib/MsBootManagerSettingsDxeLib.inf
   <PcdsFeatureFlag>
      gDfciPkgTokenSpaceGuid.PcdSettingsManagerInstallProvider|TRUE
   }
-
+  #
+  # AuthManager provides authentication for DFCI. AuthManagerNull passes out a consistent token to allow the rest 
+  # of FrontPage to be developed and tested while RngLib or other parts of the authentication process are being developed.
+  #
   DfciPkg/AuthManagerNull/AuthManagerNull.inf
-  
   #
   # Processes ingoing and outgoing DFCI settings requests.
   #
