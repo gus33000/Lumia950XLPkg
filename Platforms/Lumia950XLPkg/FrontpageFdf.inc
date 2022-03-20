@@ -1,6 +1,6 @@
 # Continuation of [FV.FvMain]
   INF MsGraphicsPkg/GopOverrideDxe/GopOverrideDxe.inf
-  INF DfciPkg/IdentityAndAuthManager/IdentityAndAuthManagerDxe.inf
+  INF DfciPkg/AuthManagerNull/AuthManagerNull.inf
   INF DfciPkg/SettingsManager/SettingsManagerDxe.inf
   INF MsGraphicsPkg/MsUiTheme/Dxe/MsUiThemeProtocol.inf
   INF MsGraphicsPkg/RenderingEngineDxe/RenderingEngineDxe.inf
