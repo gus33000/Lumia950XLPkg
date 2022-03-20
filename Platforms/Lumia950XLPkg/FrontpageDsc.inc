@@ -24,7 +24,7 @@
   #
   # Functions that should contain base logic for querying, setting, and verifying user passwords.
   #
-  PasswordStoreLib|OemPkg/Library/PasswordStoreLibNull/PasswordStoreLibNull.inf
+  PasswordStoreLib|OemPkg/Library/PasswordStoreLib/PasswordStoreLib.inf
   #
   # Supports DFCI Groups.
   #
