@@ -90,24 +90,17 @@ BDS_CONSOLE_CONNECT_ENTRY *EFIAPI GetPlatformConsoleList(VOID)
 {
   BDS_CONSOLE_CONNECT_ENTRY *pConsoleConnectEntries;
   UINTN                      simpleTextDevicePathCount     = 0;
-  UINTN                      graphicsOutputDevicePathCount = 0;
   UINTN                      Idx;
   UINTN                      Jdx = 0;
   EFI_DEVICE_PATH_PROTOCOL **pSimpleTextDevicePaths;
-  EFI_DEVICE_PATH_PROTOCOL **pGraphicsOutputDevicePaths;
 
   pSimpleTextDevicePaths = GetDevicePathsFromProtocolGuid(
       &gEFIDroidKeypadDeviceProtocolGuid, &simpleTextDevicePathCount);
 
   ASSERT(simpleTextDevicePathCount > 0);
 
-  pGraphicsOutputDevicePaths = GetDevicePathsFromProtocolGuid(
-      &gEfiGraphicsOutputProtocolGuid, &graphicsOutputDevicePathCount);
-
-  ASSERT(graphicsOutputDevicePathCount > 0);
-
   pConsoleConnectEntries = (BDS_CONSOLE_CONNECT_ENTRY *)AllocateZeroPool(
-      (simpleTextDevicePathCount + graphicsOutputDevicePathCount + 1) *
+      (simpleTextDevicePathCount + 1) *
       sizeof(BDS_CONSOLE_CONNECT_ENTRY));
 
   for (Idx = 0; Idx < simpleTextDevicePathCount; Idx++) {
@@ -116,14 +109,7 @@ BDS_CONSOLE_CONNECT_ENTRY *EFIAPI GetPlatformConsoleList(VOID)
     (pConsoleConnectEntries + Jdx++)->ConnectType = CONSOLE_IN;
   }
 
-  for (Idx = 0; Idx < graphicsOutputDevicePathCount; Idx++) {
-    (pConsoleConnectEntries + Jdx)->DevicePath =
-        *(pGraphicsOutputDevicePaths + Idx);
-    (pConsoleConnectEntries + Jdx++)->ConnectType = CONSOLE_OUT | STD_ERROR;
-  }
-
   gBS->FreePool(pSimpleTextDevicePaths);
-  gBS->FreePool(pGraphicsOutputDevicePaths);
 
   return pConsoleConnectEntries;
 }
