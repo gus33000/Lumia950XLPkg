@@ -50,7 +50,7 @@ READ_LOCK_STATUS   = TRUE
   INF Lumia950XLPkg/Driver/TimerDxe/TimerDxe.inf
   INF MdeModulePkg/Universal/WatchdogTimerDxe/WatchdogTimer.inf
   INF EmbeddedPkg/MetronomeDxe/MetronomeDxe.inf
-  INF EmbeddedPkg/ResetRuntimeDxe/ResetRuntimeDxe.inf
+  INF MdeModulePkg/Universal/ResetSystemRuntimeDxe/ResetSystemRuntimeDxe.inf
   INF EmbeddedPkg/RealTimeClockRuntimeDxe/RealTimeClockRuntimeDxe.inf
 
   # SoC Drivers (Cross-referenced from EFIDroid)
@@ -99,7 +99,9 @@ READ_LOCK_STATUS   = TRUE
   !if $(SECURE_BOOT_ENABLE) == TRUE
     INF SecurityPkg/VariableAuthenticated/SecureBootConfigDxe/SecureBootConfigDxe.inf
   !endif
-  
+
+  INF EmbeddedPkg/Drivers/VirtualKeyboardDxe/VirtualKeyboardDxe.inf
+
   # Graphics
   INF Lumia950XLPkg/Driver/SimpleFbDxe/SimpleFbDxe.inf
 
@@ -117,13 +119,9 @@ READ_LOCK_STATUS   = TRUE
   INF MdeModulePkg/Universal/DevicePathDxe/DevicePathDxe.inf
   INF MdeModulePkg/Universal/HiiDatabaseDxe/HiiDatabaseDxe.inf
   INF MdeModulePkg/Universal/SmbiosDxe/SmbiosDxe.inf
-  INF MdeModulePkg/Universal/DisplayEngineDxe/DisplayEngineDxe.inf
   INF MdeModulePkg/Universal/SetupBrowserDxe/SetupBrowserDxe.inf
   INF MdeModulePkg/Universal/DriverHealthManagerDxe/DriverHealthManagerDxe.inf
   INF MdeModulePkg/Universal/BdsDxe/BdsDxe.inf
-  INF Lumia950XLPkg/Application/BdsMenuApp/BdsMenuApp.inf
-  INF Lumia950XLPkg/Driver/LogoDxe/LogoDxe.inf
-  INF Lumia950XLPkg/Application/BootSplashApp/BootSplashApp.inf
 
   # Disk IO
   INF MdeModulePkg/Universal/Disk/DiskIoDxe/DiskIoDxe.inf
@@ -156,22 +154,7 @@ READ_LOCK_STATUS   = TRUE
 	SECTION UI = "AcpiTables"
   }
 
-  # PreLoader assets
-  FILE FREEFORM = 5fdf5e3c-6b70-4acc-8330-63a673924a46 {
-    SECTION RAW = Lumia950XLPkg/Driver/PreLoaderDxe/BootshimCheckFail.png
-	  SECTION UI = "BootshimCheckFail"
-  }
-
-  # SplashApp assets
-  FILE FREEFORM = 5af45c60-a0cd-4aab-b6f4-b1c07c347ad7 {
-    SECTION RAW = Lumia950XLPkg/Application/BootSplashApp/BootPrompt.png
-    SECTION UI = "BootSplashPrompt"
-  }
-
-  FILE FREEFORM = 5af45c60-a0cd-4aab-b6f4-b1c07c347ad8 {
-    SECTION RAW = Lumia950XLPkg/Application/BootSplashApp/BootPromptClear.png
-    SECTION UI = "BootSplashPromptClear"
-  }
+  !include Lumia950XLPkg/FrontpageFdf.inc
 
 [FV.FVMAIN_COMPACT]
 FvAlignment        = 8

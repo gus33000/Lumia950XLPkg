@@ -51,3 +51,4 @@
   gLumia950XLPkgTokenSpaceGuid.PsciCpuSuspendAddress|0x6c03aa8
   
 !include Lumia950XLPkg/Shared.dsc.inc
+!include Lumia950XLPkg/FrontpageDsc.inc

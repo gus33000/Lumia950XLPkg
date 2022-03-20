@@ -24,9 +24,6 @@
   PrintLib
   EfiResetSystemLib
   DxeServicesLib
-  BmpSupportLib
-  LittleVglLib
-  LodePngLib
 
 [Protocols]
   gPreLoaderProtocolGuid
