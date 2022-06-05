@@ -33,20 +33,14 @@ steps:
 # - script: cd acpica-tools && make clean && make && sudo make install && cd ..
 #   displayName: 'Build and install ACPICA tools'
 
-- script: chmod +x ./setup_env.sh && sudo ./setup_env.sh
+- script: chmod +x ./Phase0.sh && sudo ./Phase0.sh
   displayName: 'Prepare pre-build environment, phase 0'
 
-- script: pip install --upgrade -r ./pip-requirements.txt
+- script: chmod +x ./Phase1.sh && ./Phase1.sh
   displayName: 'Prepare pre-build environment, phase 1'
 
-- script: chmod +x ./build_releaseinfo.ps1 && ./build_releaseinfo.ps1
-  displayName: 'Prepare pre-build environment, phase 2'
-
-- script: chmod +x ./build_uefi.sh && ./build_uefi.sh
-  displayName: 'UEFI build (Lumia 950)'
-
-- script: chmod +x ./build_uefi.sh && ./build_uefi.sh
-  displayName: 'UEFI build (Lumia 950)'
+- script: chmod +x ./Build.sh && ./Build.sh
+  displayName: 'UEFI build'
 
 # Publish UEFI (3 targets)
 - task: PublishBuildArtifacts@1

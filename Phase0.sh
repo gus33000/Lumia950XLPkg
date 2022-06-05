@@ -34,3 +34,5 @@ export CLANG38_BIN=/usr/lib/llvm-10/bin/
 export CLANG38_AARCH64_PREFIX=aarch64-linux-gnu-
 
 sudo update-alternatives --install /usr/bin/objcopy objcopy /bin/aarch64-linux-gnu-objcopy 70
+
+pip install --upgrade -r ./pip-requirements.txt
