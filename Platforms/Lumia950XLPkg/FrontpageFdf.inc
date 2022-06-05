@@ -1,6 +1,6 @@
 # Continuation of [FV.FvMain]
   INF MsGraphicsPkg/GopOverrideDxe/GopOverrideDxe.inf
-  INF DfciPkg/AuthManagerNull/AuthManagerNull.inf
+  INF DfciPkg/IdentityAndAuthManager/IdentityAndAuthManagerDxe.inf
   INF DfciPkg/SettingsManager/SettingsManagerDxe.inf
   INF MsGraphicsPkg/MsUiTheme/Dxe/MsUiThemeProtocol.inf
   INF MsGraphicsPkg/RenderingEngineDxe/RenderingEngineDxe.inf
@@ -20,8 +20,13 @@
   # Hardware Health (Menu) application
   INF MsWheaPkg/HwhMenu/HwhMenu.inf
 
-  # INF MsCorePkg/AcpiRGRT/AcpiRgrt.inf
+  INF MsCorePkg/AcpiRGRT/AcpiRgrt.inf
 
+  # Change AARCH64 to the appropriate architecture for your platform.
+  FILE APPLICATION=PCD(gPcBdsPkgTokenSpaceGuid.PcdShellFile) {
+    SECTION PE32=$(OUTPUT_DIRECTORY)/$(TARGET)_$(TOOL_CHAIN_TAG)/AARCH64/Shell.efi
+    SECTION UI= "EdkShell"
+  }
   FILE FREEFORM = PCD(gOemPkgTokenSpaceGuid.PcdLogoFile) {
     SECTION RAW = Lumia950XLPkg/Include/Resources/BootLogo.bmp
     SECTION UI = "Logo"
@@ -44,6 +49,6 @@
   FILE FREEFORM = PCD(gOemPkgTokenSpaceGuid.PcdBootFailIndicatorFile) {
     SECTION RAW = OemPkg/FrontPage/Resources/NoBoot.bmp
   }
-  # FILE FREEFORM = PCD(gMsCorePkgTokenSpaceGuid.PcdRegulatoryGraphicFileGuid) {
-  #   SECTION RAW = Lumia950XLPkg/Include/Resources/RegulatoryLogos.png
-  # }
+  FILE FREEFORM = PCD(gMsCorePkgTokenSpaceGuid.PcdRegulatoryGraphicFileGuid) {
+    SECTION RAW = Lumia950XLPkg/Include/Resources/RegulatoryLogos.png
+  }

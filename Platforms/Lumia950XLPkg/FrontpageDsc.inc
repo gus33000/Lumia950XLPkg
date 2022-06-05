@@ -22,9 +22,14 @@
   #
   DfciRecoveryLib|DfciPkg/Library/DfciRecoveryLib/DfciRecoveryLib.inf
   #
+  # Contains openSSL library used by BaseCryptoLib
+  #
+  OpensslLib|CryptoPkg/Library/OpensslLib/OpensslLib.inf
+  #
   # Functions that should contain base logic for querying, setting, and verifying user passwords.
   #
   PasswordStoreLib|OemPkg/Library/PasswordStoreLib/PasswordStoreLib.inf
+  BaseCryptLib|CryptoPkg/Library/BaseCryptLib/BaseCryptLib.inf
   #
   # Supports DFCI Groups.
   #
@@ -227,17 +232,19 @@
         #Platform should add all it settings libs here
   <LibraryClasses>
         NULL|ZeroTouchPkg/Library/ZeroTouchSettings/ZeroTouchSettings.inf
+        NULL|DfciPkg/Library/DfciPasswordProvider/DfciPasswordProvider.inf
         NULL|DfciPkg/Library/DfciSettingsLib/DfciSettingsLib.inf
+        NULL|DfciPkg/Library/DfciVirtualizationSettings/DfciVirtualizationSettings.inf
+        NULL|DfciPkg/Library/DfciWpbtSettingLib/DfciWpbtSetting.inf
+        NULL|DfciPkg/Library/DfciAssetTagSettingLib/DfciAssetTagSetting.inf
         DfciSettingPermissionLib|DfciPkg/Library/DfciSettingPermissionLib/DfciSettingPermissionLib.inf
         NULL|PcBdsPkg/Library/MsBootManagerSettingsDxeLib/MsBootManagerSettingsDxeLib.inf
   <PcdsFeatureFlag>
      gDfciPkgTokenSpaceGuid.PcdSettingsManagerInstallProvider|TRUE
   }
-  #
-  # AuthManager provides authentication for DFCI. AuthManagerNull passes out a consistent token to allow the rest 
-  # of FrontPage to be developed and tested while RngLib or other parts of the authentication process are being developed.
-  #
-  DfciPkg/AuthManagerNull/AuthManagerNull.inf
+
+  DfciPkg/IdentityAndAuthManager/IdentityAndAuthManagerDxe.inf
+  
   #
   # Processes ingoing and outgoing DFCI settings requests.
   #
@@ -274,4 +281,22 @@
   # Hardware Health (Menu) application
   MsWheaPkg/HwhMenu/HwhMenu.inf
 
-  # MsCorePkg/AcpiRGRT/AcpiRgrt.inf
+  MsCorePkg/AcpiRGRT/AcpiRgrt.inf
+  
+#######################################
+#  Shell
+#######################################
+
+  ShellPkg/Application/Shell/Shell.inf {
+    <LibraryClasses>
+      NULL|ShellPkg/Library/UefiShellLevel2CommandsLib/UefiShellLevel2CommandsLib.inf
+      NULL|ShellPkg/Library/UefiShellLevel1CommandsLib/UefiShellLevel1CommandsLib.inf
+      NULL|ShellPkg/Library/UefiShellLevel3CommandsLib/UefiShellLevel3CommandsLib.inf
+      NULL|ShellPkg/Library/UefiShellDriver1CommandsLib/UefiShellDriver1CommandsLib.inf
+      NULL|ShellPkg/Library/UefiShellInstall1CommandsLib/UefiShellInstall1CommandsLib.inf
+      NULL|ShellPkg/Library/UefiShellDebug1CommandsLib/UefiShellDebug1CommandsLib.inf
+      NULL|ShellPkg/Library/UefiShellNetwork1CommandsLib/UefiShellNetwork1CommandsLib.inf
+      NULL|ShellPkg/Library/UefiShellNetwork2CommandsLib/UefiShellNetwork2CommandsLib.inf
+    <PcdsFixedAtBuild>
+     gEfiShellPkgTokenSpaceGuid.PcdShellLibAutoInitialize|FALSE
+  }
