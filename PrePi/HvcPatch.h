@@ -582,10 +582,8 @@ UINT32 LowerELSynchronous64PatchHandler[] = {
     0xf10059ff, // cmp  x15, #0x16             6'b010110 = HVC 64bit
     0x54ff2a60, // b.eq HvcHandlerEntry
     0xf1005dff, // cmp  x15, #0x17             6'b010111 = SMC 64bit trap
-    0x540000a0, // b.eq El2TrapSmcHandler
-    0xf100001f, // cmp  x15, #0                 undefined instruction
-    0x5400aba0, // b.eq LsePatchStart
-    0x17fff98f, // b    OtherExceptionHandler
+    0x54000040, // b.eq El2TrapSmcHandler
+    0x17fff991, // b    OtherExceptionHandler
     // El2TrapSmcHandler:
     0xd53c4030, // mrs  x16, ELR_EL2
     0x91001210, // add  x16, x16, #4
@@ -595,11 +593,12 @@ UINT32 LowerELSynchronous64PatchHandler[] = {
     0x52b8800f, // mov  w15, #0xc4000000
     0x6b0f021f, // cmp  w16, w15
     0x54000041, // b.ne El2TrapInvokeSmc
-    0x17fff945, // b    HvcHandlerEntry
+    0x17fff947, // b    HvcHandlerEntry
     // El2TrapInvokeSmc:
     0xa8c143ef, // ldp  x15, x16, [sp], #0x10
     0xd4000003, // smc  #0
     0xd69f03e0, // eret
+                // Yay there are two instructions space left
 };
 
 UINT32 LowerELSynchronous32PatchHandler[] = {
@@ -637,10 +636,8 @@ UINT32 LowerELSynchronous64PatchHandler[] = {
     0xf10059ff, // cmp  x15, #0x16             6'b010110 = HVC 64bit
     0x54ff4660, // b.eq HvcHandlerEntry
     0xf1005dff, // cmp  x15, #0x17             6'b010111 = SMC 64bit trap
-    0x540000a0, // b.eq El2TrapSmcHandler
-    0xf100001f, // cmp  x15, #0                 undefined instruction
-    0x5400aba0, // b.eq LsePatchStart
-    0x17fffa6f, // b    OtherExceptionHandler
+    0x54000040, // b.eq El2TrapSmcHandler
+    0x17fffa71, // b    OtherExceptionHandler
     // El2TrapSmcHandler:
     0xd53c4030, // mrs  x16, ELR_EL2
     0x91001210, // add  x16, x16, #4
@@ -650,11 +647,12 @@ UINT32 LowerELSynchronous64PatchHandler[] = {
     0x52b8800f, // mov  w15, #0xc4000000
     0x6b0f021f, // cmp  w16, w15
     0x54000041, // b.ne El2TrapInvokeSmc
-    0x17fffa25, // b    HvcHandlerEntry
+    0x17fffa27, // b    HvcHandlerEntry
     // El2TrapInvokeSmc:
     0xa8c143ef, // ldp  x15, x16, [sp], #0x10
     0xd4000003, // smc  #0
     0xd69f03e0, // eret
+                // Yay there are two instructions space left
 };
 
 UINT32 LowerELSynchronous32PatchHandler[] = {
