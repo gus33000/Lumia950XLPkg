@@ -71,19 +71,8 @@ STATIC VOID PsciFixupInit(VOID)
       (VOID *)LsePatchOffset, LsePatchCode,
       sizeof(LsePatchCode));
 
-  WriteBackInvalidateDataCacheRange(
-      (VOID *)(UINTN)WAKE_FROM_POWERGATE_PATCH_ADDR,
-      sizeof(WakeFromPowerGatePatchHandler));
-  WriteBackInvalidateDataCacheRange(
-      (VOID *)(UINTN)LOWER_EL_SYNC_EXC_64B_PATCH_ADDR,
-      sizeof(LowerELSynchronous64PatchHandler));
-  WriteBackInvalidateDataCacheRange(
-      (VOID *)(UINTN)LOWER_EL_SYNC_EXC_32B_PATCH_ADDR,
-      sizeof(LowerELSynchronous32PatchHandler));
-  WriteBackInvalidateDataCacheRange(
-      (VOID *)(UINTN)LSE_PATCH_CODE_ADDR, sizeof(LsePatchCode));
-
   ArmDataSynchronizationBarrier();
+  ArmInvalidateDataCache();
   ArmInvalidateInstructionCache();
 
   // Call into the handler to make HCR_EL2.TSC sticky
