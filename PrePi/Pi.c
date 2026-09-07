@@ -67,9 +67,9 @@ STATIC VOID PsciFixupInit(VOID)
   CopyMem(
       (VOID *)LowerELSynchronous32PatchOffset, LowerELSynchronous32PatchHandler,
       sizeof(LowerELSynchronous32PatchHandler));
-  CopyMem(
+  /*CopyMem(
       (VOID *)LsePatchOffset, LsePatchCode,
-      sizeof(LsePatchCode));
+      sizeof(LsePatchCode));*/
 
   ArmDataSynchronizationBarrier();
   ArmInvalidateDataCache();
